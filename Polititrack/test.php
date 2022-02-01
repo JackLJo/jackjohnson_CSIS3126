@@ -3,7 +3,7 @@
 <body>
 <?php
 
-$json = get_web_page("https://www.googleapis.com/civicinfo/v2/elections?key=AIzaSyCFEsS-7b9psbDHXd5x9gviJxTSuzsAbxs");
+$json = get_web_page("https://www.googleapis.com/civicinfo/v2/elections?key=");
 
 $result = json_decode($json);
 
