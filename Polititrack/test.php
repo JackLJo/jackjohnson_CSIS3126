@@ -1,40 +1,35 @@
 <!DOCTYPE HTML>
+
 <html>
 <body>
-<?php
-
-$json = get_web_page("https://www.googleapis.com/civicinfo/v2/elections?key=");
-
-$result = json_decode($json);
-
-   var_dump($result);
+  <?php
 
 
-  function get_web_page($url) {
-    $options = array(
-        CURLOPT_RETURNTRANSFER => true,   // return web page
-        CURLOPT_HEADER         => false,  // don't return headers
-        CURLOPT_FOLLOWLOCATION => true,   // follow redirects
-        CURLOPT_MAXREDIRS      => 10,     // stop after 10 redirects
-        CURLOPT_ENCODING       => "",     // handle compressed
-        CURLOPT_USERAGENT      => "test", // name of client
-        CURLOPT_AUTOREFERER    => true,   // set referrer on redirect
-        CURLOPT_CONNECTTIMEOUT => 120,    // time-out on connect
-        CURLOPT_TIMEOUT        => 120,    // time-out on response
-    );
+    $token = bin2hex(random_bytes(16));
+    echo $token;
+  //
+  //
+  // $key = "AIzaSyCFEsS-7b9psbDHXd5x9gviJxTSuzsAbxs";
+  // $address = "15 America St, Providence RI, 02903";
+  //
+  //
+  //
+  // $data = file_get_contents("https://www.googleapis.com/civicinfo/v2/voterinfo?&address=".urlencode($address)."&key=".$key."&electionId=2000");
+  //
+  // $data = json_decode($data);
+  // echo "<pre>";
+  //
+  //
+  // foreach($data->contests as $contest){
+  //     echo $contest->name;
+  //     echo "<br />";
+  // }
+  //
+  //
+  //
+  //
+   ?>
 
-    $ch = curl_init($url);
-    curl_setopt_array($ch, $options);
 
-    $content  = curl_exec($ch);
-
-    curl_close($ch);
-
-    return $content;
-}
-
-
-
- ?>
 </body>
 </html>

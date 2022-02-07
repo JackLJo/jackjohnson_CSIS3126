@@ -15,14 +15,25 @@
   $res = mysqli_query($connection, "select * from users where email =\"" . $email . "\" and password = \"" . $password . "\"");
   $row = mysqli_fetch_assoc($res);
 
-  if($row){
-    echo "Success!";
-  }
-  else{
-    echo "Your email or password may be incorrect.";
+  $errormessage .= !$row ? "You're Email or password is incorrect. Please try again." : "" ;
+
+  if(strlen($errormessage) > 0){
+    echo $errormessage;
+    include("login.php");
+    die();
   }
 
+  $token = bin2hex(random_bytes(16));
+
+
+  session_start();
+
+  $_SESSION["token"] = $token;
+
+
   mysqli_close($connection);
+
+  header("Location: home.php");
 
  ?>
 </head>
