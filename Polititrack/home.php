@@ -25,8 +25,8 @@ session_start();
 </h1>
 
 <?php
-$key = "AIzaSyCFEsS-7b9psbDHXd5x9gviJxTSuzsAbxs";
-$sampleAddress = "229 Federal Street, Providence RI, 02909";
+$key = "";
+$sampleAddress = "";
 
 $data = file_get_contents("https://www.googleapis.com/civicinfo/v2/voterinfo?key=".$key."&address=".urlencode($sampleAddress)."&electionId=2000");
 $data = json_decode($data);

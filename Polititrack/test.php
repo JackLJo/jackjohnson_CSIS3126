@@ -9,8 +9,8 @@
     echo $token;
   //
   //
-  // $key = "AIzaSyCFEsS-7b9psbDHXd5x9gviJxTSuzsAbxs";
-  // $address = "15 America St, Providence RI, 02903";
+  // $key = "";
+  // $address = "";
   //
   //
   //
