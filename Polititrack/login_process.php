@@ -23,12 +23,13 @@
     die();
   }
 
-  $token = bin2hex(random_bytes(16));
 
 
-  session_start();
+  $_SESSION["token"] = bin2hex(random_bytes(16));
 
-  $_SESSION["token"] = $token;
+  $token = mysqli_real_escape_string($connection, $_SESSION["token"]);
+
+  mysqli_query($connection, "update users set token = \"" . $token . "\" where email = \"" . $email. "\"" );
 
 
   mysqli_close($connection);

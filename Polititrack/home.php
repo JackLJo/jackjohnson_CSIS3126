@@ -20,9 +20,9 @@ session_start();
 
 
 
-<h1>
-
-</h1>
+<h2>
+<a href="profile.php">Your profile</a><br/>
+</h2>
 
 <?php
 $key = "";
@@ -38,7 +38,7 @@ foreach($data->contests as $contest){
 
 
     foreach($contest->candidates as $candidate){
-      echo "<a href=candidate.php?name=".urlencode($candidate->name).">" . $candidate->name . ", " . $candidate->party . "</a>";
+      echo "<a href=candidate.php?name=".urlencode($candidate->name)."&party=".urlencode($candidate->party).">" . $candidate->name . ", " . $candidate->party . "</a>";
 
       echo"<br/>";
     }
@@ -55,7 +55,7 @@ foreach($data->contests as $contest){
 <body>
 <br /><br />
 
-<a href="profile.php">Your profile</a><br/>
+
 
 
 
