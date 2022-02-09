@@ -26,9 +26,9 @@ session_start();
 
 <?php
 $key = "";
-$sampleAddress = "";
+$sample_address = "02909";
 
-$data = file_get_contents("https://www.googleapis.com/civicinfo/v2/voterinfo?key=".$key."&address=".urlencode($sampleAddress)."&electionId=2000");
+$data = file_get_contents("https://www.googleapis.com/civicinfo/v2/voterinfo?key=".$key."&address=".urlencode($sample_address)."&electionId=2000");
 $data = json_decode($data);
 
 foreach($data->contests as $contest){
