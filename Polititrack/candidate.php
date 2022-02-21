@@ -2,8 +2,8 @@
 <?php
   session_start();
 
-  $news_api_key = "a45cb211e1eb4d159d3c5b3ae44ba4ad";
-  $google_civ_key = "AIzaSyCFEsS-7b9psbDHXd5x9gviJxTSuzsAbxs";
+  $news_api_key = "";
+  $google_civ_key = "";
 
   $connection = mysqli_connect("localhost","root","root","polititrack");
   $res = mysqli_query($connection, "select * from users where token =\"" . $_SESSION['token'] . "\"");
@@ -63,7 +63,7 @@
     $data = file_get_contents("https://en.wikipedia.org/w/api.php?action=query&prop=info&list=prefixsearch&pssearch=".urlencode($name)."&format=json");
     $data = json_decode($data);
 
-    
+
 
     if(count($data->query->prefixsearch)!= 0){
       foreach($data->query->prefixsearch as $item){

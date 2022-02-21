@@ -48,7 +48,7 @@ session_start();
 
 <?php
 
-$key = "AIzaSyCFEsS-7b9psbDHXd5x9gviJxTSuzsAbxs";
+$key = "";
 
 $connection = mysqli_connect("localhost","root","root","polititrack");
 $res = mysqli_query($connection, "select * from users where token =\"" . $_SESSION['token'] . "\"");
