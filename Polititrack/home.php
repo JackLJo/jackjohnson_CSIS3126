@@ -24,9 +24,13 @@ session_start();
         throw new Exception("Invalid Token");
     }
 
+    if(!$row["zip"]){
+        throw new Exception("This user does not have a ZIP code added to their account!");
+    }
+
   }
   catch(Exception $e){
-    echo "Error : " . $e->getMessage();
+    echo "Error : " . $e->getMessage() . "<br />";
     mysqli_close($connection);
     include("login.php");
     die();
@@ -44,7 +48,7 @@ session_start();
 
 <?php
 
-$key = "";
+$key = "AIzaSyCFEsS-7b9psbDHXd5x9gviJxTSuzsAbxs";
 
 $connection = mysqli_connect("localhost","root","root","polititrack");
 $res = mysqli_query($connection, "select * from users where token =\"" . $_SESSION['token'] . "\"");
@@ -67,7 +71,7 @@ foreach($data->contests as $contest){
     echo "<h3>" . $contest->district->name . " " . $contest->office . "</h3>";
 
     foreach($contest->candidates as $candidate){
-      echo "<a href=candidate.php?name=".urlencode($candidate->name)."&party=".urlencode($candidate->party).">" . $candidate->name . ", " . $candidate->party . "</a>";
+      echo "<a href=candidate.php?name=".urlencode($candidate->name)."&party=".urlencode($candidate->party)."&state=".str_replace(" ", "_", $row["state"]).">" . $candidate->name . ", " . $candidate->party . "</a>";
       echo"<br/>";
     }
   }
