@@ -12,5 +12,9 @@
 
   <input type="submit" value="Log in">
 
+  <br/><br/>
+
+  <a href="register.php">Create an account</a>
+
 </body>
 </html>

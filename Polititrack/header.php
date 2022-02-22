@@ -4,17 +4,20 @@
 
 <?php
   session_start();
+  try{
     if(!$_SESSION['token']){
-      echo "
-      Oops! You do not have access to this page..
-      <br/>
-      Please <a href=login.php>login.</a>
-      <br />
-      <br/>
-      <a href=register.php>Create a new account</a>
-      ";
-      die();
+      throw new Exception("You must be logged in to view this page.");
     }
+  }
+  catch(Exception $e){
+    echo "Error : " . $e->getMessage() . "<br/><br/>";
+    session_unset();
+    session_destroy();
+    include("login.php");
+    die();
+
+  }
+
  ?>
 
 <head>

@@ -7,15 +7,16 @@
 <body>
   <form action="register_process.php" method = "post">
   <font size="-1">* = Required</font><br/>
-  Email * : <input type="text" name="email"><br />
-  Password * : <input type="password" name="pw"><br />
-  Re-enter your password * : <input type="password" name="pw2"><br />
+  Email * : <input type="text" name="email"><br/>
+  Username * : <input type="text" name="username"><br/>
+  Password * : <input type="password" name="pw"><br/>
+  Re-enter your password * : <input type="password" name="pw2"><br/>
   <br/>
 
   For this website to work, we must know atleast the ZIP code and state of where you are eligible to vote.
   <br/>
   For more accurate results, a full address would work best.
-  <br/>
+  <br/><br/>
   Street Line : <input type="text" name="street"><br/>
   ZIP Code * : <input type="number" name="zip"><br/>
   State * : <select name="state">
