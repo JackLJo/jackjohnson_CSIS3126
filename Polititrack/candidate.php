@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <?php
-  session_start();
+  include("header.php");
 
   $news_api_key = "";
   $google_civ_key = "";
@@ -20,11 +20,6 @@
       include("login.php");
       die();
     }
-
-
-
-
-
 ?>
 <html>
 <title>
@@ -70,9 +65,6 @@
 
         similar_text($name, $item->title, $perc);
 
-
-
-
         if($perc > 90){
           $doc = new DOMDocument();
           $doc->loadHTML(file_get_contents("https://en.wikipedia.org?curid=$item->pageid"));
@@ -88,52 +80,33 @@
             echo $summary->item($i)->nodeValue;
             break;
           }
+
+          break;
         }
       }
     }
+
     else{
 
       echo "We could not find information regarding this candidate. <br/>";
     }
 
-
-
-
-
-     //
-     // echo "<pre>";
-     // var_dump($data);
-     // echo "</pre>";
   ?>
-  <h3>
-    News:
-  </h3>
-</head>
-<body>
-<?php
-
-
-
-    $news = file_get_contents("https://newsapi.org/v2/everything?q=".urlencode($name)."+".urlencode($_GET["party"])."&searchIn=title,description&sortBy=popularity&language=en&apiKey=".$news_api_key);
+  <?php
+    $news = file_get_contents("https://newsapi.org/v2/everything?q=".urlencode($name)."+".urlencode($_GET["party"])."&searchIn=title,description,content&sortBy=popularity&language=en&apiKey=".$news_api_key);
 
     $news = json_decode($news);
 
-    if(!$news->articles){
-      echo "This candidate could not be found in the news..";
+    if(count($news->articles) > 0){
+      echo "<h3>News</h3>";
+      for($i = 0; $i < 3 ; $i++){
+        echo "<a href =" . $news->articles[$i]->url .">". $news->articles[$i]->title . "&emsp; (" . $news->articles[$i]->source->name . ")<br/> <font size=\"-1\">" . $news->articles[$i]->description . "</font></a> <br/><br/>";
+      }
     }
-
-    for($i = 0; $i < 3 ; $i++){
-      echo "<a href =" . $news->articles[$i]->url .">". $news->articles[$i]->title . "<br/> <font size=\"-1\">" . $news->articles[$i]->description . "</font></a> <br/><br/>";
-    }
-
-
-
-
-    //loginRequestWiki(getLoginTokenWiki());
-
-
-
-
+  ?>
+</head>
+<body>
+  <?php
     mysqli_close($connection);
   ?>
 </body>

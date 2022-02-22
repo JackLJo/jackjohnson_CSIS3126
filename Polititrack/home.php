@@ -2,18 +2,10 @@
 
 <html>
 <?php
-session_start();
-  if(!$_SESSION['token']){
-    echo "
-    Oops! You do not have access to this page..
-    <br/>
-    Please <a href=login.php>login.</a>
-    <br />
-    <br/>
-    <a href=register.php>Create a new account</a>
-    ";
-    die();
-  }
+
+  include("header.php");
+
+  $key = "";
 
   $connection = mysqli_connect("localhost","root","root","polititrack");
   $res = mysqli_query($connection, "select * from users where token =\"" . $_SESSION['token'] . "\"");
@@ -37,18 +29,6 @@ session_start();
   }
 
 
- ?>
-
-
-
-
-<h2>
-<a href="profile.php">Your profile</a><br/>
-</h2>
-
-<?php
-
-$key = "";
 
 $connection = mysqli_connect("localhost","root","root","polititrack");
 $res = mysqli_query($connection, "select * from users where token =\"" . $_SESSION['token'] . "\"");
